@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Заданные мной цвета-->
+
+    <color name="CV1">#00E3C4</color>
+    <color name="CV2">#D6A4EF</color>
+    <color name="CV3">#63FF00</color>
+    <color name="CV4">#FF003C</color>
+    <color name="CV5">#A917CF</color>
+    <color name="CV6">#F10C73</color>
+    <color name="CV7">#016A18</color>
+    <color name="CV8">#05D6F6</color>
+    <color name="CV9">#D50B66</color>
+    <color name="CV10">#03E661</color>
+    <color name="CV11">#FBF23B</color>
+    <color name="CV12">#96A5FC</color>
+    <color name="CV13">#03297A</color>
+    <color name="CV14">#FBF23B</color>
+    <color name="CV15">#526AFB</color>
+    <color name="CV16">#FB8BBE</color>
+    <color name="CV17">#B5AC02</color>
+    <color name="CV18">#8203C2</color>
+    <color name="CV19">#F80A75</color>
+    <color name="CV20">#30FBDF</color>
+    <color name="CV21">#5FCAFF</color>
+    <color name="CV22">#3954F8</color>
+    <color name="CV23">#8EF84B</color>
+    <color name="CV24">#1636F8</color>
+    <color name="CV25">#F65647</color>
+    <color name="CV26">#74FAE7</color>
+    <color name="CV27">#874311</color>
+    <color name="CV28">#FF42FC</color>
+    <color name="CV29">#D37BFF</color>
+    <color name="CV30">#FAEFB7</color>
+    <color name="CV31">#FFE600</color>
+
+    <color name="CV32">#D5B300</color>  // для деления на 0
+    <color name="CV33">#B465ED</color>  // для кореннь
+    <color name="CV34">#286700</color>  // для больш число
+    <color name="CV35">#FF6D00</color>  // для памяти когда м -
+    <color name="CV36">#A600FF</color>  // для памяти когда м +
+
+    <color name="CV37">#066E31</color>  // фон заголовка
+
+    <color name="CV38">#95F856</color>  // цвет надписи заголовка
+    <color name="CV39">#FF00A1</color>  // анимац кнопок 3
+    <color name="CV40">#FFFB00</color>  // анимац кнопок 2
+    <color name="CV41">#50FF4A</color>
+
+    <color name="CV42">#059C00</color> Цвет текста из рандом
+
+    <color name="CV43">#FF0D7A</color>
+    <color name="CV44">#37FF00</color>
+    <color name="CV45">#FFC800</color>
+    <color name="CV46">#63FF00</color>
+
+    <!--Цвета заданные при формировании программы-->
+
+    <color name="purple_200">#61310D</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#9C5CF8</color>
+    <color name="teal_200">#D50000</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000307</color>
+
+</resources>

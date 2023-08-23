@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Контейнер LinearLayout представляет простейший контейнер - объект ViewGroup, который
+упорядочивает все дочерние элементы в одном направлении: по горизонтали или по вертикали.
+Все элемены расположены один за другим-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/CV13"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- поле ячейки памяти -->
+
+    <TextView
+        android:id="@+id/znak"
+        android:layout_width="match_parent"
+        android:layout_height="13pt"
+        android:layout_marginLeft="1pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/rounded_verch"
+        android:gravity="left"
+
+        android:paddingLeft="3pt"
+        android:textColor="@color/CV28"
+        android:textSize="6pt"
+        android:textStyle="bold" />
+
+    <!-- поле хода вычисления-->
+
+    <TextView
+        android:id="@+id/vichislen"
+        android:layout_width="match_parent"
+        android:layout_height="13pt"
+        android:layout_marginLeft="1pt"
+        android:layout_marginRight="2pt"
+        android:background="@color/CV26"
+        android:fontFamily="@font/contact"
+        android:gravity="right|center"
+        android:paddingRight="5pt"
+        android:text=""
+        android:textColor="@color/CV27"
+        android:textSize="11pt"
+
+        android:textStyle="bold" />
+
+    <!-- поле ОТВЕТА -->
+    <!-- android:maxLength="13"-->
+
+    <TextView
+        android:id="@+id/otvet"
+        android:layout_width="match_parent"
+        android:layout_height="42pt"
+        android:layout_marginLeft="1pt"
+        android:layout_marginTop="0.2pt"
+        android:layout_marginRight="2pt"
+        android:background="@color/CV20"
+
+        android:fontFamily="@font/abrilfatface_regular"
+        android:gravity="center"
+        android:paddingLeft="2pt"
+        android:paddingRight="2pt"
+        android:text="0"
+
+        android:textColor="@color/CV20"
+        android:textSize="24pt" />
+
+    <!--Поле хода набора чисел и знаков-->
+
+    <!--Контейнер структурирует элементы управления в виде таблицы по столбцам и строкам-->
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="42pt"
+        android:layout_marginLeft="1pt"
+        android:layout_marginTop="0.2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/rounded_niz"
+        android:ellipsize="end"
+        android:fontFamily="@font/strslupw"
+        android:gravity="right|center"
+        android:paddingLeft="3pt"
+        android:paddingRight="5pt"
+        android:text="0 "
+        android:textColor="@color/CV41"
+        android:textSize="22pt"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--Верхний ряд кнопок  ПАМЯТЬ-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/buSbrosMem"
+                android:layout_marginRight="2pt"
+                android:layout_weight="3"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV24"
+                android:onClick="memori"
+                android:rotation="-5"
+                android:text="MС"
+                android:textColor="@color/CV4"
+                android:textSize="10pt"
+                app:cornerRadius="800dp"
+                app:strokeColor="@color/CV25"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/buVivMem"
+                android:layout_marginRight="2pt"
+                android:layout_marginBottom="4pt"
+                android:layout_weight="3"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV24"
+                android:onClick="memori"
+                android:rotation="-5"
+                android:text="MR"
+                android:textColor="@color/CV44"
+                android:textSize="10pt"
+                app:cornerRadius="800dp"
+                app:strokeColor="@color/CV25"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/buMinusMem"
+                android:layout_marginRight="2pt"
+                android:layout_weight="3"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV24"
+                android:onClick="memori"
+                android:rotation="-5"
+                android:text="M-"
+                android:textColor="@color/white"
+                android:textSize="10pt"
+                app:cornerRadius="800dp"
+                app:strokeColor="@color/CV25"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/buPlusMem"
+                android:layout_marginRight="2pt"
+                android:layout_weight="3"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV24"
+                android:onClick="memori"
+                android:rotation="-5"
+                android:text="M+"
+                android:textColor="@color/white"
+                android:textSize="10pt"
+                app:cornerRadius="800dp"
+                app:strokeColor="@color/CV25"
+                app:strokeWidth="2dp" />
+
+            <Button
+                android:id="@+id/buZapMem"
+                android:layout_marginRight="2pt"
+                android:layout_weight="3"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV24"
+                android:onClick="memori"
+                android:rotation="-5"
+                android:text="MV"
+                android:textColor="@color/CV45"
+                android:textSize="10pt"
+                app:cornerRadius="800dp"
+                app:strokeColor="@color/CV25"
+                app:strokeWidth="2dp" />
+
+        </TableRow>
+
+        <!--Второй ряд кнопок  СБРОС, DEL, Х-->
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/buAC"
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="1pt"
+                android:layout_weight="400"
+                android:height="35pt"
+                android:backgroundTint="@color/CV11"
+                android:onClick="acClick"
+                android:text="AC"
+                android:textColor="@color/CV4"
+                android:textSize="14pt"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/CV17"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+            <Button
+                android:id="@+id/buVozvedVKvadrat"
+                android:layout_marginRight="2pt"
+                android:height="32pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickVozvedVKvadrat"
+                android:paddingTop="4pt"
+                android:text="x²"
+                android:textColor="@color/CV10"
+                android:textSize="12pt"
+                android:textStyle="bold"
+                app:cornerRadius="15dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+
+            <Button
+                android:id="@+id/buDelX"
+                android:height="32pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickDelenNaX"
+                android:paddingTop="4pt"
+                android:text="1/х"
+                android:textColor="@color/CV10"
+                android:textSize="12pt"
+                android:textStyle="bold"
+                app:cornerRadius="15dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+            <Button
+                android:id="@+id/buDel"
+
+                android:layout_marginLeft="1pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="400"
+                android:height="35pt"
+                android:backgroundTint="@color/CV12"
+                android:onClick="delitClick"
+                android:text="⌫"
+                android:textColor="@color/CV5"
+                android:textSize="14pt"
+                android:textStyle="bold"
+                app:cornerRadius="15dp"
+                app:strokeColor="@color/CV15"
+                app:strokeWidth="3dp"
+                />
+
+
+        </TableRow>
+
+        <!--Третий ряд кнопок  +/-, %, КОРЕНЬ ... -->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/buPlusMinus"
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickNumber"
+                android:text="±"
+                android:textColor="@color/CV10"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+            <Button
+                android:id="@+id/buPercent"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickProcent"
+                android:text="%"
+                android:textColor="@color/CV10"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+            <Button
+                android:id="@+id/buKoren"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickKoren"
+                android:text="√"
+                android:textColor="@color/CV10"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+
+            <Button
+                android:id="@+id/buMultiply"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV30"
+                android:fontFamily="@font/rbutus"
+                android:onClick="operation"
+                android:text="×"
+                android:textColor="@color/CV6"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="18dp"
+                app:strokeColor="@color/CV31"
+                app:strokeWidth="10dp" />
+
+        </TableRow>
+
+        <!--Второй ряд кнопок-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu7"
+
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg1"
+                android:elevation="60dp"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:stateListAnimator="@null"
+                android:text="7"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                android:translationZ="40dp"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu8"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg1"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="8"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu9"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg1"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="9"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+
+                android:id="@+id/buDivide"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV30"
+                android:fontFamily="@font/rbutus"
+                android:onClick="operation"
+                android:text="÷"
+                android:textColor="@color/CV6"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="18dp"
+                app:strokeColor="@color/CV31"
+                app:strokeWidth="10dp" />
+        </TableRow>
+
+        <!--Третий ряд кнопок-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu4"
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg2"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="4"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu5"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg2"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="5"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu6"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg2"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="6"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/buPlus"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV30"
+                android:fontFamily="@font/rbutus"
+                android:onClick="operation"
+                android:text="+"
+                android:textColor="@color/CV6"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="18dp"
+                app:strokeColor="@color/CV31"
+                app:strokeWidth="10dp" />
+
+        </TableRow>
+
+        <!--Четвертый ряд кнопок-->
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bu1"
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg3"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="1"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu2"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg3"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="2"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/bu3"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg3"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="3"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <Button
+                android:id="@+id/buMinus"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1"
+                android:width="30pt"
+                android:height="30pt"
+                android:backgroundTint="@color/CV30"
+                android:fontFamily="@font/rbutus"
+                android:onClick="operation"
+                android:text="-"
+                android:textColor="@color/CV6"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="18dp"
+                app:strokeColor="@color/CV31"
+                app:strokeWidth="10dp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <!--Нижний ряд кнопок-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/buZap"
+                android:layout_marginLeft="2pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="2.1"
+                android:width="30pt"
+                android:height="35pt"
+                android:backgroundTint="@color/CV29"
+                android:onClick="clickNumber"
+                android:text="."
+                android:textColor="@color/CV7"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:strokeColor="@color/CV18"
+                app:strokeWidth="3dp"
+                android:fontFamily="@font/rbutus"/>
+
+            <Button
+                android:id="@+id/bu0"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1.8"
+                android:width="30pt"
+                android:height="35pt"
+                android:background="@drawable/ripple_bg4"
+                android:fontFamily="@font/rbutus"
+                android:onClick="clickNumber"
+                android:text="0"
+                android:textColor="@color/CV3"
+                android:textSize="20pt"
+                android:textStyle="bold"
+                app:cornerRadius="50dp"
+                app:strokeColor="@color/CV14"
+                app:strokeWidth="4dp" />
+
+            <!--android:backgroundTint="@color/CV2"-->
+
+            <Button
+                android:id="@+id/buRavn"
+
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1pt"
+                android:layout_marginRight="2pt"
+                android:layout_weight="1.3"
+                android:width="30pt"
+                android:height="35pt"
+                android:backgroundTint="@color/CV9"
+                android:onClick="clickRavno"
+                android:text="="
+                android:fontFamily="@font/rbutus"
+                android:textColor="@color/CV8"
+                android:textSize="15pt"
+                android:textStyle="bold"
+                app:cornerRadius="100dp"
+                app:strokeColor="@color/CV16"
+                app:strokeWidth="4dp" />
+
+        </TableRow>
+
+    </LinearLayout>
+
+    <!-- /*Регулировка громкости*/-->
+
+    <SeekBar
+        android:id="@+id/volumeControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="2pt"
+        android:layout_marginBottom="2pt"
+        android:background="@drawable/rounded_zvuk"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playButton" />
+
+</LinearLayout>
