@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"> <font fgcolor='#95F856' size="18">  <!--Цвет и размер текста заголовка-->
+    <string name="app_name"> <font fgcolor='#95F856' size="19">  <!--Цвет и размер текста заголовка-->
         СЧЕТЫ С АНИМАЦИЕЙ И ЗВУКОМ</font>
     </string>
 

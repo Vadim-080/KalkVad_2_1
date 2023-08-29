@@ -141,6 +141,11 @@ public class MainActivity extends AppCompatActivity {
         tv4 = (TextView) findViewById(R.id.editText);
         tv4.startAnimation(anim);
 
+        Button b2 = (Button) findViewById(R.id.buSbrosMem);
+        b2.setEnabled(false);
+        Button b20 = (Button) findViewById(R.id.buVivMem);
+        b20.setEnabled(false);
+
         String timeStamp = new SimpleDateFormat("HH").format(Calendar.getInstance().getTime()); // Задается экран приветствия
         byte q = Byte.parseByte(timeStamp);
         byte a = (byte) (Math.random() * 3); // Случайное число от 0 до 2
@@ -211,8 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 koifPrivet = 2;
             }
             viborShriftaPrivet();
-            return;
-        }
+                  }
     }
 
     public void sbrosPrivet() {
@@ -305,7 +309,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 number = number + "7";
                 break;
-            case R.id.bu8:
+            case
+                    R.id.bu8:
                 if (zeroIsFirst(number) && number.length() == 1) {
                     number = number.substring(1);
                 }
@@ -459,7 +464,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.buPlus:
                     operator = "+";
                     View buPlus = findViewById(R.id.buPlus);
-                    buPlus.animate().rotationXBy(180).setDuration(300);
+                    buPlus.animate().rotationXBy(-180).setDuration(300);
                     break;
                 case R.id.buMultiply:
                     operator = "*";
@@ -469,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.buDivide:
                     operator = "÷";
                     View buDivide = findViewById(R.id.buDivide);
-                    buDivide.animate().rotationYBy(180).setDuration(300);
+                    buDivide.animate().rotationYBy(-180).setDuration(300);
                     break;
             }
             obrabativDlyaRezChislo = Double.parseDouble(s9);
@@ -497,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buMinus:
                 operator = "-";
                 View buMinus = findViewById(R.id.buMinus);
-                buMinus.animate().rotationXBy(180).setDuration(300);
+                buMinus.animate().rotationXBy(-180).setDuration(300);
                 break;
             case R.id.buPlus:
                 operator = "+";
@@ -512,7 +517,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buDivide:
                 operator = "÷";
                 View buDivide = findViewById(R.id.buDivide);
-                buDivide.animate().rotationYBy(180).setDuration(300);
+                buDivide.animate().rotationYBy(-180).setDuration(300);
                 break;
         }
         if ((s.contains("0 -") || s.contains("1 -") || s.contains("2 -") || s.contains("3 -") ||
@@ -590,8 +595,11 @@ public class MainActivity extends AppCompatActivity {
 
                     viborShriftaDelen();
                     otvet.setText("НЕЛЬЗЯ  ДЕЛИТЬ  НА  «0»");
+
                     aktivaciyaKnopok = false;
                     blokiAktivaciyaKnopok();
+                    /*Button bb = (Button) findViewById(R.id.buAC);
+                    bb.setEnabled(true);*/
                     scobci = newNumberSProb;
                     scobci();
                     if (result == 0) {
@@ -603,6 +611,8 @@ public class MainActivity extends AppCompatActivity {
                         vichislen.setText(formatOtveta + " " + operator + " " + scobci + " =");  // n
                         CvetIRazmer.razmerPolyaVichislen();
                     }
+                    /*Button bb = (Button) findViewById(R.id.buAC);
+                    bb.setEnabled(true);*/
                     return;
                 } else {
                     result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
@@ -846,7 +856,6 @@ public class MainActivity extends AppCompatActivity {
                 otvet.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
                 CvetIRazmer.cvetNadpisei();
                 otvet.setTextColor(cvet);
-                /* koifPrivet = 13;*/
                 viborShriftaDelen();
                 otvet.setText("НЕЛЬЗЯ  ДЕЛИТЬ  НА  «0»");
                 aktivaciyaKnopok = false;
@@ -1042,6 +1051,9 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                View buA = findViewById(R.id.buKoren);
+                buA.animate().rotationYBy(360).setDuration(100);
+
                 if (s8 != 0 && (s.contains("="))) {
                     String s5 = String.valueOf(result);
                     result = (Math.sqrt(result));
@@ -1108,9 +1120,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         }
-        View buA = findViewById(R.id.buKoren);
-        buA.animate().rotationYBy(360).setDuration(100);
-    }
+           }
 
     /*Метод задает формат вывода ответа на экран */
     public void RezDelenNaX() {
@@ -1128,6 +1138,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.buZapMem:
+
+                String x1 = otvet.getText().toString();
+                if (x1.contains("У") | x1.contains("Д") | x1.contains("В") | x1.contains("Н")|x1.contains("у") | x1.contains("д") | x1.contains("в") | x1.contains("н")) {
+                    return;
+                }
 
                 Button b10 = (Button) findViewById(R.id.buVivMem);
                 b10.setEnabled(true);
@@ -1159,6 +1174,11 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.buPlusMem:
 
+                String x2 = otvet.getText().toString();
+                if (x2.contains("У") | x2.contains("Д") | x2.contains("В") | x2.contains("Н")|x2.contains("у") | x2.contains("д") | x2.contains("в") | x2.contains("н")) {
+                    return;
+                }
+
                 Button b12 = (Button) findViewById(R.id.buVivMem);
                 b12.setEnabled(true);
                 Button b13 = (Button) findViewById(R.id.buSbrosMem);
@@ -1187,6 +1207,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buMinusMem:
+
+                String x3 = otvet.getText().toString();
+                if (x3.contains("У") | x3.contains("Д") | x3.contains("В") | x3.contains("Н")|x3.contains("у") | x3.contains("д") | x3.contains("в") | x3.contains("н")) {
+                    return;
+                }
 
                 Button b14 = (Button) findViewById(R.id.buVivMem);
                 b14.setEnabled(true);
@@ -1268,7 +1293,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buSbrosMem:
-
                 Button helloWorld = findViewById(R.id.buSbrosMem);   // ПРОЗРАЧНОСТЬ КНОПКИ
                 helloWorld.setAlpha(0f);
                 helloWorld.animate().alpha(1f).setDuration(1500);
@@ -1291,8 +1315,7 @@ public class MainActivity extends AppCompatActivity {
         double s2 = Double.parseDouble(udalProbVvod);
         String s3 = vichislen.getText().toString();
 
-
-        if (s1.contains("0") && s2 == 0 != s1.contains("НЕЛЬЗЯ") != s3.contains("=")) {
+        if (s1.contains("0") && s2 == 0 /*!= s1.contains("НЕЛЬЗЯ") */!= s3.contains("=")) {
             Button b2 = (Button) findViewById(R.id.buAC);
             b2.setEnabled(false);
             return;
@@ -1304,8 +1327,7 @@ public class MainActivity extends AppCompatActivity {
 
         viborPoliaDlyaZadaniaRazmera = 4;
         CvetIRazmer.razmerPolei();
-        /*   flagMem = false;*/
-        Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
+            Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
         otvet.setTypeface(typefaceLato);
         otvet.setTextColor(Color.parseColor("#30FBDF"));  // Цвет поля ответа
         otvet.setText("0");
@@ -1443,7 +1465,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-
 
     public void viborShriftaPrivet() {
         byte a = (byte) (Math.random() * 5); // Случайное число от 0 до 4

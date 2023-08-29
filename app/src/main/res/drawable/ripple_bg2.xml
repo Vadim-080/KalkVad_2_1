@@ -11,16 +11,11 @@
         </shape>
     </item>
 
-
-
     <item android:id="@android:id/background">
         <shape android:shape="oval">
             <gradient
 
-
-
                 android:startColor="@color/CV11"
-
 
                 android:type="linear" />
             <corners android:radius="100dp" />
