@@ -21,12 +21,11 @@
         android:layout_height="13pt"
         android:layout_marginLeft="1pt"
         android:layout_marginRight="2pt"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_verch"
         android:gravity="left"
-
         android:paddingLeft="3pt"
         android:textColor="@color/CV28"
-        android:textSize="6pt"
         android:textStyle="bold" />
 
     <!-- поле хода вычисления-->
@@ -37,18 +36,21 @@
         android:layout_height="13pt"
         android:layout_marginLeft="1pt"
         android:layout_marginRight="2pt"
+        android:autoSizeTextType="uniform"
         android:background="@color/CV26"
         android:fontFamily="@font/contact"
         android:gravity="right|center"
         android:paddingRight="5pt"
         android:text=""
         android:textColor="@color/CV27"
-        android:textSize="11pt"
-
         android:textStyle="bold" />
 
     <!-- поле ОТВЕТА -->
     <!-- android:maxLength="13"-->
+
+    <!--Поле хода набора чисел и знаков-->
+
+    <!--Контейнер структурирует элементы управления в виде таблицы по столбцам и строкам-->
 
     <TextView
         android:id="@+id/otvet"
@@ -57,20 +59,14 @@
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
+        android:autoSizeTextType="uniform"
         android:background="@color/CV20"
-
         android:fontFamily="@font/abrilfatface_regular"
         android:gravity="center"
-        android:paddingLeft="2pt"
-        android:paddingRight="2pt"
+        android:paddingLeft="5pt"
+        android:paddingRight="5pt"
         android:text="0"
-
-        android:textColor="@color/CV20"
-        android:textSize="24pt" />
-
-    <!--Поле хода набора чисел и знаков-->
-
-    <!--Контейнер структурирует элементы управления в виде таблицы по столбцам и строкам-->
+        android:textColor="@color/CV20" />
 
     <EditText
         android:id="@+id/editText"
@@ -79,15 +75,15 @@
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_niz"
-        android:ellipsize="end"
         android:fontFamily="@font/strslupw"
         android:gravity="right|center"
         android:paddingLeft="3pt"
         android:paddingRight="5pt"
         android:text="0 "
         android:textColor="@color/CV41"
-        android:textSize="22pt"
+        android:textSize="20pt"
         android:textStyle="bold" />
 
     <TableLayout
@@ -194,6 +190,7 @@
                 android:layout_weight="400"
                 android:height="35pt"
                 android:backgroundTint="@color/CV11"
+                android:fontFamily="@font/rbutus"
                 android:onClick="acClick"
                 android:text="AC"
                 android:textColor="@color/CV4"
@@ -201,14 +198,14 @@
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/CV17"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buVozvedVKvadrat"
                 android:layout_marginRight="2pt"
                 android:height="32pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickVozvedVKvadrat"
                 android:paddingTop="4pt"
                 android:text="x²"
@@ -217,14 +214,13 @@
                 android:textStyle="bold"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
-
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buDelX"
                 android:height="32pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickDelenNaX"
                 android:paddingTop="4pt"
                 android:text="1/х"
@@ -233,12 +229,10 @@
                 android:textStyle="bold"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buDel"
-
                 android:layout_marginLeft="1pt"
                 android:layout_marginRight="2pt"
                 android:layout_weight="400"
@@ -251,9 +245,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="15dp"
                 app:strokeColor="@color/CV15"
-                app:strokeWidth="3dp"
-                />
-
+                app:strokeWidth="3dp" />
 
         </TableRow>
 
@@ -263,7 +255,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <Button
                 android:id="@+id/buPlusMinus"
                 android:layout_marginLeft="2pt"
@@ -272,6 +263,7 @@
                 android:width="30pt"
                 android:height="30pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickNumber"
                 android:text="±"
                 android:textColor="@color/CV10"
@@ -279,8 +271,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buPercent"
@@ -289,6 +280,7 @@
                 android:width="30pt"
                 android:height="30pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickProcent"
                 android:text="%"
                 android:textColor="@color/CV10"
@@ -296,8 +288,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buKoren"
@@ -306,6 +297,7 @@
                 android:width="30pt"
                 android:height="30pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickKoren"
                 android:text="√"
                 android:textColor="@color/CV10"
@@ -313,9 +305,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
-
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/buMultiply"
@@ -577,14 +567,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <Button
                 android:id="@+id/buZap"
@@ -594,6 +581,7 @@
                 android:width="30pt"
                 android:height="35pt"
                 android:backgroundTint="@color/CV29"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickNumber"
                 android:text="."
                 android:textColor="@color/CV7"
@@ -601,8 +589,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:strokeColor="@color/CV18"
-                app:strokeWidth="3dp"
-                android:fontFamily="@font/rbutus"/>
+                app:strokeWidth="3dp" />
 
             <Button
                 android:id="@+id/bu0"
@@ -633,9 +620,9 @@
                 android:width="30pt"
                 android:height="35pt"
                 android:backgroundTint="@color/CV9"
+                android:fontFamily="@font/rbutus"
                 android:onClick="clickRavno"
                 android:text="="
-                android:fontFamily="@font/rbutus"
                 android:textColor="@color/CV8"
                 android:textSize="15pt"
                 android:textStyle="bold"

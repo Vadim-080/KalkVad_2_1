@@ -1,7 +1,5 @@
 package com.example.kalkvad_2_1;
 
-/*import static com.example.kalkvad_2_1.CvetIChrift.viborShriftaDelen;*/
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     String newNumberSProb = String.valueOf(0);
     String oldNumber = String.valueOf(0);
     String newNumber = String.valueOf(0);
-    /* Boolean flagMem = false;  // обозначает, что был вывод из памяти*/
     double result = 0.0;
     String memori;
     String formatOtveta = String.valueOf(0);
@@ -153,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
         if (a == 0) {
             if (q >= 5 && q < 11) {
                 koifPrivet = 1;
-                otvet.setText("ДОБРОЕ  УТРО");
+                otvet.setText("ДОБРОЕ УТРО");
             }
             if (q >= 11 && q < 18) {
                 koifPrivet = 2;
-                otvet.setText("ДОБРЫЙ  ДЕНЬ");
+                otvet.setText("ДОБРЫЙ ДЕНЬ");
             }
             if (q >= 18 && q < 23) {
                 koifPrivet = 4;
@@ -165,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (q >= 23 || q < 5) {
                 koifPrivet = 2;
-                otvet.setText("ДОБРОЙ  НОЧИ");
+                otvet.setText("ДОБРОЙ НОЧИ");
             }
             viborShriftaPrivet();
             return;
@@ -216,19 +213,18 @@ public class MainActivity extends AppCompatActivity {
                 koifPrivet = 2;
             }
             viborShriftaPrivet();
-                  }
+        }
     }
 
     public void sbrosPrivet() {
         String s10 = otvet.getText().toString();
-        if (s10.contains("ДОБ") || s10.contains("ПРИ") || s10.contains("при") || s10.contains("хор")
-                || s10.contains("спо") || s10.contains("тих")) {
+        if (s10.contains("УТР") || s10.contains("утр") || s10.contains("ДЕН") || s10.contains("ден") || s10.contains("ДН")
+                || s10.contains("дн") || s10.contains("ВЕЧ") || s10.contains("веч") || s10.contains("НОЧ") || s10.contains("ноч")) {
             otvet.setTextColor(Color.parseColor("#30FBDF"));  // Цвет поля ответа
             otvet.setText("0");
             Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
             otvet.setTypeface(typefaceLato);
             viborPoliaDlyaZadaniaRazmera = 4;
-            CvetIRazmer.razmerPolei();
         }
     }
 
@@ -309,8 +305,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 number = number + "7";
                 break;
-            case
-                    R.id.bu8:
+            case R.id.bu8:
                 if (zeroIsFirst(number) && number.length() == 1) {
                     number = number.substring(1);
                 }
@@ -370,8 +365,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-        viborPoliaDlyaZadaniaRazmera = 3;
-        CvetIRazmer.razmerPolei();
 
         double s3 = Double.parseDouble(number);
         udalProbelov();
@@ -429,10 +422,9 @@ public class MainActivity extends AppCompatActivity {
     /* Метод ввода операций вычисления */
     public void operation(View view) throws InterruptedException {
         sbrosPrivet();
-        viborPoliaDlyaZadaniaRazmera = 1;
-        CvetIRazmer.razmerPolei();
+        /*viborPoliaDlyaZadaniaRazmera = 1;
+        CvetIRazmer.razmerPolei();*/
         vichislen.setTextColor(Color.parseColor("#874311"));  // Цвет текста вычисления
-        /*  flagMem = false;*/
         vvodChisla.setTextColor(Color.parseColor("#3954F8"));  // Синий цвет CV22
         mediaPlayer1.start();
         udalProbelov();
@@ -484,13 +476,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (s8 == 0) {
                 vichislen.setText("(" + s + " " + scobci + ") " + operator);
-                CvetIRazmer.razmerPolyaVichislen();
+
             } else {
                 obrabativDlyaRezChislo = s8;
                 formatObrabotkiRezEdinui();
 
                 vichislen.setText("(" + formatOtveta + " " + starOperator + " " + scobci + ") " + operator);
-                CvetIRazmer.razmerPolyaVichislen();
             }
             number = String.valueOf(0);
             vvodChisla.setTextColor(Color.parseColor("#30FF02"));  // светло зелен
@@ -556,10 +547,6 @@ public class MainActivity extends AppCompatActivity {
         z.setAlpha(0.6f);
         z.animate().alpha(1.0f).setDuration(2000);
 
-        /*    flagMem = false;*/
-        viborPoliaDlyaZadaniaRazmera = 1;
-        CvetIRazmer.razmerPolei();
-
         udalProbelov();
         newNumber = number;
         newNumberSProb = numberSProb;
@@ -598,21 +585,16 @@ public class MainActivity extends AppCompatActivity {
 
                     aktivaciyaKnopok = false;
                     blokiAktivaciyaKnopok();
-                    /*Button bb = (Button) findViewById(R.id.buAC);
-                    bb.setEnabled(true);*/
+
                     scobci = newNumberSProb;
                     scobci();
                     if (result == 0) {
                         vichislen.setText(oldNumberSProb + " " + operator + " " + scobci + " ="); // n
-                        CvetIRazmer.razmerPolyaVichislen();
                     } else {
                         obrabativDlyaRezChislo = result;
                         formatObrabotkiRezEdinui();
                         vichislen.setText(formatOtveta + " " + operator + " " + scobci + " =");  // n
-                        CvetIRazmer.razmerPolyaVichislen();
                     }
-                    /*Button bb = (Button) findViewById(R.id.buAC);
-                    bb.setEnabled(true);*/
                     return;
                 } else {
                     result = Double.parseDouble(oldNumber) / Double.parseDouble(newNumber);
@@ -623,8 +605,7 @@ public class MainActivity extends AppCompatActivity {
             bolchChisloVOtvet();
             scobci = newNumberSProb;
             scobci();
-            vichislen.setText(oldNumber + " " + operator + " " + scobci); // n
-            CvetIRazmer.razmerPolyaVichislen();
+            vichislen.setText(oldNumber + " " + operator + " " + scobci);
             return;
         } else {
 
@@ -669,17 +650,16 @@ public class MainActivity extends AppCompatActivity {
                 scobci = numberSProb;
                 scobci();
                 vichislen.setText(b1 + " " + operator + " " + scobci + " =");
-                CvetIRazmer.razmerPolyaVichislen();
+
             } else {
                 scobci = newNumberSProb;
                 scobci();
                 vichislen.setText(oldNumberSProb + " " + operator + " " + scobci + " =");
-                CvetIRazmer.razmerPolyaVichislen();
+
             }
         }
         znakKoren = false;
-        viborPoliaDlyaZadaniaRazmera = 2;
-        CvetIRazmer.razmerPolei();
+
         otvet.setTextColor(Color.parseColor("#F80A75"));   // Красный
         obrabativDlyaRezChislo = result;
         formatObrabotkiRezEdinui();
@@ -792,7 +772,6 @@ public class MainActivity extends AppCompatActivity {
                     String s4 = vichislen.getText().toString();
                     clickRavno(null);
                     vichislen.setText(s4 + " " + "(" + s3 + " ²" + ")" + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
                     return;
                 } else {
                     if (n1 != 0) {
@@ -831,6 +810,7 @@ public class MainActivity extends AppCompatActivity {
             Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
             z.setAlpha(0.6f);
             z.animate().alpha(1f).setDuration(1000);
+
         }
 
         mediaPlayer5.start();
@@ -847,11 +827,9 @@ public class MainActivity extends AppCompatActivity {
             String s4 = vichislen.getText().toString();
             clickRavno(null);
             vichislen.setText(s4 + " " + "(" + "1 ÷" + " " + s3 + ")" + " =");
-            CvetIRazmer.razmerPolyaVichislen();
             return;
         } else {
             if (a1 == 0 && a2 == 0) {
-                /*otvet.setTextSize(31);  */        // ЗАДАЁТ РАЗМЕР ТЕКСТА
                 int maxLength = 30;             // Разрешённая длина строки
                 otvet.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
                 CvetIRazmer.cvetNadpisei();
@@ -880,6 +858,7 @@ public class MainActivity extends AppCompatActivity {
                             RezDelenNaX();
                         }
                         vvodChisla.setText("0");
+
                 }
             }
             Button helloWorld = findViewById(R.id.buDelX);   // ПРОЗРАЧНОСТЬ КНОПКИ
@@ -888,6 +867,7 @@ public class MainActivity extends AppCompatActivity {
 
             number = String.valueOf(0);
             vvodChisla.setTextColor(Color.parseColor("#00E3C4"));   // цвет поля ввода
+
         }
     }
 
@@ -936,7 +916,7 @@ public class MainActivity extends AppCompatActivity {
                     scobci = formatOtveta;
                     scobci();
                     vichislen.setText(scobci + " + " + numberSProb + " % " + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
+                    /*CvetIRazmer.razmerPolyaVichislen();*/
                     number = String.valueOf(0);
                     break;
 
@@ -949,7 +929,7 @@ public class MainActivity extends AppCompatActivity {
                     scobci = formatOtveta;
                     scobci();
                     vichislen.setText(oldNumber + " - " + numberSProb + " % " + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
+                    /*CvetIRazmer.razmerPolyaVichislen();*/
                     number = String.valueOf(0);
                     break;
 
@@ -967,7 +947,7 @@ public class MainActivity extends AppCompatActivity {
                     scobci();
                     String a2 = scobci;
                     vichislen.setText(a2 + " % от " + a1 + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
+                    /*CvetIRazmer.razmerPolyaVichislen();*/
                     number = String.valueOf(0);
                     break;
 
@@ -986,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
                     scobci();
                     String a4 = scobci;
                     vichislen.setText(a3 + " ÷ (на " + a4 + " % от " + a3 + ") =");
-                    CvetIRazmer.razmerPolyaVichislen();
+                    /*CvetIRazmer.razmerPolyaVichislen();*/
 
                     number = String.valueOf(0);
                     break;
@@ -1079,7 +1059,6 @@ public class MainActivity extends AppCompatActivity {
                     String s4 = formatOtveta;
                     clickRavno(null);
                     vichislen.setText(s4 + " " + operator + " " + "(" + "√" + " " + s3 + ")" + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
                     return;
                 }
 
@@ -1098,7 +1077,7 @@ public class MainActivity extends AppCompatActivity {
                     String s4 = formatOtveta;
                     clickRavno(null);
                     vichislen.setText(s4 + " " + operator + " " + "(" + "√" + " " + s3 + ")" + " =");
-                    CvetIRazmer.razmerPolyaVichislen();
+                    /*CvetIRazmer.razmerPolyaVichislen();*/
                 } else {
                     if (s1 != 0) {
                         obrabativDlyaRezChislo = Double.parseDouble(number);  // вычисляет из ввода
@@ -1120,7 +1099,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         }
-           }
+    }
 
     /*Метод задает формат вывода ответа на экран */
     public void RezDelenNaX() {
@@ -1140,7 +1119,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buZapMem:
 
                 String x1 = otvet.getText().toString();
-                if (x1.contains("У") | x1.contains("Д") | x1.contains("В") | x1.contains("Н")|x1.contains("у") | x1.contains("д") | x1.contains("в") | x1.contains("н")) {
+                if (x1.contains("У") | x1.contains("Д") | x1.contains("В") | x1.contains("Н") | x1.contains("у") | x1.contains("д") | x1.contains("в") | x1.contains("н")) {
                     return;
                 }
 
@@ -1175,7 +1154,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buPlusMem:
 
                 String x2 = otvet.getText().toString();
-                if (x2.contains("У") | x2.contains("Д") | x2.contains("В") | x2.contains("Н")|x2.contains("у") | x2.contains("д") | x2.contains("в") | x2.contains("н")) {
+                if (x2.contains("У") | x2.contains("Д") | x2.contains("В") | x2.contains("Н") | x2.contains("у") | x2.contains("д") | x2.contains("в") | x2.contains("н")) {
                     return;
                 }
 
@@ -1209,7 +1188,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buMinusMem:
 
                 String x3 = otvet.getText().toString();
-                if (x3.contains("У") | x3.contains("Д") | x3.contains("В") | x3.contains("Н")|x3.contains("у") | x3.contains("д") | x3.contains("в") | x3.contains("н")) {
+                if (x3.contains("У") | x3.contains("Д") | x3.contains("В") | x3.contains("Н") | x3.contains("у") | x3.contains("д") | x3.contains("в") | x3.contains("н")) {
                     return;
                 }
 
@@ -1251,7 +1230,6 @@ public class MainActivity extends AppCompatActivity {
                     b2.setEnabled(false);
                 }
 
-                /*      flagMem = true;*/
                 result = Double.parseDouble(memori);
                 number = memori;
                 obrabativDlyaRezChislo = Double.parseDouble(number);
@@ -1261,8 +1239,6 @@ public class MainActivity extends AppCompatActivity {
                 double a = Double.valueOf(memori);
                 obrabativDlyaRezChislo = a;
                 formatObrabotkiRezEdinui();
-                viborPoliaDlyaZadaniaRazmera = 3;
-                CvetIRazmer.razmerPolei();
                 vvodChisla.setTextColor(Color.parseColor("#3954F8"));    // Синий цвет CV22
                 vvodChisla.setText(formatOtveta + "");
 
@@ -1285,8 +1261,6 @@ public class MainActivity extends AppCompatActivity {
                     vichislen.setText(formatOtveta + " " + operator);
                     otvet.setTextColor(Color.parseColor("#30FBDF"));  // Цвет поля ответа
                 }
-
-                number = String.valueOf(0);
 
                 View buVivMem = findViewById(R.id.buVivMem);       // ПРОВОРОТ КНОПКИ
                 buVivMem.animate().rotationYBy(360).setDuration(3000);
@@ -1315,7 +1289,7 @@ public class MainActivity extends AppCompatActivity {
         double s2 = Double.parseDouble(udalProbVvod);
         String s3 = vichislen.getText().toString();
 
-        if (s1.contains("0") && s2 == 0 /*!= s1.contains("НЕЛЬЗЯ") */!= s3.contains("=")) {
+        if (s1.contains("0") && s2 == 0 != s3.contains("=") != s1.contains("НЕ")) {
             Button b2 = (Button) findViewById(R.id.buAC);
             b2.setEnabled(false);
             return;
@@ -1325,9 +1299,7 @@ public class MainActivity extends AppCompatActivity {
         z.setAlpha(1f);
         z.animate().alpha(0.6f).setDuration(1000);
 
-        viborPoliaDlyaZadaniaRazmera = 4;
-        CvetIRazmer.razmerPolei();
-            Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
+        Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
         otvet.setTypeface(typefaceLato);
         otvet.setTextColor(Color.parseColor("#30FBDF"));  // Цвет поля ответа
         otvet.setText("0");
@@ -1377,8 +1349,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (s.length() == 1) {
-            viborPoliaDlyaZadaniaRazmera = 3;
-            CvetIRazmer.razmerPolei();
+
             vvodChisla.setTextColor(Color.parseColor("#30FF02"));  // светло зелен
             vvodChisla.setText("0");
             number = String.valueOf(0);
@@ -1470,27 +1441,22 @@ public class MainActivity extends AppCompatActivity {
         byte a = (byte) (Math.random() * 5); // Случайное число от 0 до 4
 
         if (a == 0) {
-            otvet.setTextSize(40 - koifPrivet);
             Typeface a1 = getResources().getFont(R.font.pacifico_regular);
             otvet.setTypeface(a1);
         }
         if (a == 1) {
-            otvet.setTextSize(33 - koifPrivet);
             Typeface a1 = getResources().getFont(R.font.komi);
             otvet.setTypeface(a1);
         }
         if (a == 2) {
-            otvet.setTextSize(48 - koifPrivet);
             Typeface a1 = getResources().getFont(R.font.qwe);
             otvet.setTypeface(a1);
         }
         if (a == 3) {
-            otvet.setTextSize(58 - koifPrivet);
             Typeface a1 = getResources().getFont(R.font.vanowitsch);
             otvet.setTypeface(a1);
         }
         if (a == 4) {
-            otvet.setTextSize(43 - koifPrivet);
             Typeface a1 = getResources().getFont(R.font.ocker);
             otvet.setTypeface(a1);
         }
@@ -1500,27 +1466,22 @@ public class MainActivity extends AppCompatActivity {
         byte a = (byte) (Math.random() * 5); // Случайное число от 0 до 4
 
         if (a == 0) {
-            otvet.setTextSize(18);
             Typeface a1 = getResources().getFont(R.font.pacifico_regular);
             otvet.setTypeface(a1);
         }
         if (a == 1) {
-            otvet.setTextSize(19);
             Typeface a1 = getResources().getFont(R.font.komi);
             otvet.setTypeface(a1);
         }
         if (a == 2) {
-            otvet.setTextSize(29);
             Typeface a1 = getResources().getFont(R.font.qwe);
             otvet.setTypeface(a1);
         }
         if (a == 3) {
-            otvet.setTextSize(31);
             Typeface a1 = getResources().getFont(R.font.vanowitsch);
             otvet.setTypeface(a1);
         }
         if (a == 4) {
-            otvet.setTextSize(25);
             Typeface a1 = getResources().getFont(R.font.ocker);
             otvet.setTypeface(a1);
         }
@@ -1530,27 +1491,22 @@ public class MainActivity extends AppCompatActivity {
         byte a = (byte) (Math.random() * 5); // Случайное число от 0 до 4
 
         if (a == 0) {
-            otvet.setTextSize(24);
             Typeface a1 = getResources().getFont(R.font.pacifico_regular);
             otvet.setTypeface(a1);
         }
         if (a == 1) {
-            otvet.setTextSize(20);
             Typeface a1 = getResources().getFont(R.font.komi);
             otvet.setTypeface(a1);
         }
         if (a == 2) {
-            otvet.setTextSize(27);
             Typeface a1 = getResources().getFont(R.font.qwe);
             otvet.setTypeface(a1);
         }
         if (a == 3) {
-            otvet.setTextSize(35);
             Typeface a1 = getResources().getFont(R.font.vanowitsch);
             otvet.setTypeface(a1);
         }
         if (a == 4) {
-            otvet.setTextSize(25);
             Typeface a1 = getResources().getFont(R.font.ocker);
             otvet.setTypeface(a1);
         }
@@ -1560,27 +1516,22 @@ public class MainActivity extends AppCompatActivity {
         byte a = (byte) (Math.random() * 5); // Случайное число от 0 до 9
 
         if (a == 0) {
-            otvet.setTextSize(18);
             Typeface a1 = getResources().getFont(R.font.pacifico_regular);
             otvet.setTypeface(a1);
         }
         if (a == 1) {
-            otvet.setTextSize(16);
             Typeface a1 = getResources().getFont(R.font.komi);
             otvet.setTypeface(a1);
         }
         if (a == 2) {
-            otvet.setTextSize(22);
             Typeface a1 = getResources().getFont(R.font.qwe);
             otvet.setTypeface(a1);
         }
         if (a == 3) {
-            otvet.setTextSize(31);
             Typeface a1 = getResources().getFont(R.font.vanowitsch);
             otvet.setTypeface(a1);
         }
         if (a == 4) {
-            otvet.setTextSize(22);
             Typeface a1 = getResources().getFont(R.font.ocker);
             otvet.setTypeface(a1);
         }
