@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer4;
     MediaPlayer mediaPlayer5;
     MediaPlayer mediaPlayerAC;
-    private LocalTime curTime;
 
     /* Аннотация Java. Он сообщает компилятору, что следующий метод
     переопределяет метод своего суперкласса*/
@@ -99,7 +98,11 @@ public class MainActivity extends AppCompatActivity {
         /*Регулировка громкости*/
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC); // определение кол-во ступеней регулир громкости устройства
+        int volumeNachaln = maxVolume /15;
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumeNachaln, 0);
+
         int curValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         volumeControl = findViewById(R.id.volumeControl);
         volumeControl.setMax(maxVolume);

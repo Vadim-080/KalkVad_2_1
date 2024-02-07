@@ -15,10 +15,12 @@
 
     <!-- поле ячейки памяти -->
 
+    <!-- поле хода вычисления-->
+
     <TextView
         android:id="@+id/znak"
         android:layout_width="match_parent"
-        android:layout_height="13pt"
+        android:layout_height="12pt"
         android:layout_marginLeft="1pt"
         android:layout_marginRight="2pt"
         android:autoSizeTextType="uniform"
@@ -27,8 +29,6 @@
         android:paddingLeft="3pt"
         android:textColor="@color/CV28"
         android:textStyle="bold" />
-
-    <!-- поле хода вычисления-->
 
     <TextView
         android:id="@+id/vichislen"
@@ -55,7 +55,7 @@
     <TextView
         android:id="@+id/otvet"
         android:layout_width="match_parent"
-        android:layout_height="42pt"
+        android:layout_height="40pt"
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
@@ -71,7 +71,7 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="42pt"
+        android:layout_height="39pt"
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
