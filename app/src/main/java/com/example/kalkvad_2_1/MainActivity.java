@@ -8,8 +8,10 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -80,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        vvodChisla = findViewById(R.id.editText);
+        otvet = findViewById(R.id.otvet);
+        poleMemori = findViewById(R.id.znak);
+        vichislen = findViewById(R.id.vichislen);
+        buAC = findViewById(R.id.buAC);
+
+        vvodChisla.setInputType(0);   //   Запрет вывода клавиатуры для поля ВВОД ЧИСЛА
+
         /* Задаём звуковые сигналы*/
 
         mediaPlayer1 = MediaPlayer.create(this, R.raw.elektron1);
@@ -89,18 +99,12 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer4 = MediaPlayer.create(this, R.raw.ravno2);
         mediaPlayer5 = MediaPlayer.create(this, R.raw.proc);
 
-        vvodChisla = findViewById(R.id.editText);
-        otvet = findViewById(R.id.otvet);
-        poleMemori = findViewById(R.id.znak);
-        vichislen = findViewById(R.id.vichislen);
-        buAC = findViewById(R.id.buAC);
-
-        /*Регулировка громкости*/
+/*Регулировка громкости*/
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC); // определение кол-во ступеней регулир громкости устройства
-        int volumeNachaln = maxVolume /15;
+        int volumeNachaln = maxVolume / 7;
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volumeNachaln, 0);
 
         int curValue = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -121,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-        Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ
-        z.setAlpha(1f);
-        z.animate().alpha(0.6f).setDuration(2000);
+        // ПРОЗРАЧНОСТЬ КНОПКИ
+        buAC.setAlpha(1f);
+        buAC.animate().alpha(0.6f).setDuration(2000);
+        buAC.setEnabled(false);
 
         CvetIRazmer.cvetNadpisei();
         otvet.setTextColor(cvet);
@@ -246,8 +251,11 @@ public class MainActivity extends AppCompatActivity {
     /* Метод ввода цифр */
     public void clickNumber(View view) {
         sbrosPrivet();
-        Button bb = (Button) findViewById(R.id.buAC);
-        bb.setEnabled(true);
+
+        buAC.setEnabled(true);
+        buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+        buAC.animate().alpha(1f).setDuration(2000);
+
 
         String s = vichislen.getText().toString();
         if (s.contains("=")) {
@@ -544,11 +552,10 @@ public class MainActivity extends AppCompatActivity {
 
     /* Метод проводящий вычисления */
     public void clickRavno(View view) throws InterruptedException {
-        Button b1 = (Button) findViewById(R.id.buAC);
-        b1.setEnabled(true);
-        Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-        z.setAlpha(0.6f);
-        z.animate().alpha(1.0f).setDuration(2000);
+// ПРОЗРАЧНОСТЬ КНОПКИ АС
+        buAC.setEnabled(true);
+        buAC.setAlpha(0.6f);
+        buAC.animate().alpha(1f).setDuration(2000);
 
         udalProbelov();
         newNumber = number;
@@ -719,11 +726,9 @@ public class MainActivity extends AppCompatActivity {
         udalProbelov();
         double aa = Double.parseDouble(udalProbOtvet);
         if (aa == 0) {
-            Button b1 = (Button) findViewById(R.id.buAC);
-            b1.setEnabled(true);
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-            z.setAlpha(0.6f);
-            z.animate().alpha(1f).setDuration(1000);
+            buAC.setEnabled(true);
+            buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+            buAC.animate().alpha(1f).setDuration(2000);
         }
 
         mediaPlayer5.start();
@@ -808,11 +813,9 @@ public class MainActivity extends AppCompatActivity {
         udalProbelov();
         double a2 = Double.parseDouble(udalProbOtvet);
         if (a2 == 0) {
-            Button b1 = (Button) findViewById(R.id.buAC);
-            b1.setEnabled(true);
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-            z.setAlpha(0.6f);
-            z.animate().alpha(1f).setDuration(1000);
+            buAC.setEnabled(true);
+            buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+            buAC.animate().alpha(1f).setDuration(2000);
 
         }
 
@@ -880,11 +883,9 @@ public class MainActivity extends AppCompatActivity {
         udalProbelov();
         double s2 = Double.parseDouble(udalProbOtvet);
         if (s2 == 0) {
-            Button b1 = (Button) findViewById(R.id.buAC);
-            b1.setEnabled(true);
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-            z.setAlpha(0.6f);
-            z.animate().alpha(1f).setDuration(1000);
+            buAC.setEnabled(true);
+            buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+            buAC.animate().alpha(1f).setDuration(2000);
         }
 
         zapretVtoroiTochki = false;
@@ -997,11 +998,9 @@ public class MainActivity extends AppCompatActivity {
         udalProbelov();
         double aa = Double.parseDouble(udalProbOtvet);
         if (aa == 0) {
-            Button b1 = (Button) findViewById(R.id.buAC);
-            b1.setEnabled(true);
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-            z.setAlpha(0.6f);
-            z.animate().alpha(1f).setDuration(1000);
+            buAC.setEnabled(true);
+            buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+            buAC.animate().alpha(1f).setDuration(2000);
         }
 
         otvet.setTextColor(Color.parseColor("#F80A75"));    // Красный
@@ -1288,19 +1287,10 @@ public class MainActivity extends AppCompatActivity {
     /* Метод обработки сброса AC */
     public void acClick(View view) throws InterruptedException {
         udalProbelov();
-        String s1 = otvet.getText().toString();
-        double s2 = Double.parseDouble(udalProbVvod);
-        String s3 = vichislen.getText().toString();
 
-        if (s1.contains("0") && s2 == 0 != s3.contains("=") != s1.contains("НЕ")) {
-            Button b2 = (Button) findViewById(R.id.buAC);
-            b2.setEnabled(false);
-            return;
-        }
-
-        Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ АС
-        z.setAlpha(1f);
-        z.animate().alpha(0.6f).setDuration(1000);
+        buAC.setEnabled(false);
+        buAC.setAlpha(1f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+        buAC.animate().alpha(0.6f).setDuration(2000);
 
         Typeface typefaceLato = getResources().getFont(R.font.abrilfatface_regular);
         otvet.setTypeface(typefaceLato);
@@ -1330,7 +1320,7 @@ public class MainActivity extends AppCompatActivity {
         otvet.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         udalProbelov();
 
-        View buAC = findViewById(R.id.buAC);                   // ПОВОРОТ КНОПКИ
+        // ПОВОРОТ КНОПКИ
         buAC.animate().rotationXBy(360).setDuration(2000);
     }
 
@@ -1544,11 +1534,9 @@ public class MainActivity extends AppCompatActivity {
     public void blokiAktivaciyaKnopok() throws InterruptedException {
 
         if (aktivaciyaKnopok == false) {
-            Button bb = (Button) findViewById(R.id.buAC);
-            bb.setEnabled(true);
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ
-            z.setAlpha(0.6f);
-            z.animate().alpha(1.0f).setDuration(1000);
+            buAC.setEnabled(true);
+            buAC.setAlpha(0.6f);  // ПРОЗРАЧНОСТЬ КНОПКИ
+            buAC.animate().alpha(1f).setDuration(2000);
             vvodChisla.setTextColor(Color.parseColor("#00E3C4"));  // цвет поля ввода
 
             buAC.setTextColor(Color.parseColor("#63FF00")); // Цвет текста кнопки AC
@@ -1695,9 +1683,6 @@ public class MainActivity extends AppCompatActivity {
             a27.animate().alpha(0.2f).setDuration(5000);
 
         } else {
-            Button z = findViewById(R.id.buAC);   // ПРОЗРАЧНОСТЬ КНОПКИ
-            z.setAlpha(1f);
-            z.animate().alpha(0.6f).setDuration(1000);
             vvodChisla.setTextColor(Color.parseColor("#30FF02"));  // светло зелен
 
             buAC.setTextColor(Color.parseColor("#FF003C")); // Цвет текста кнопки AC

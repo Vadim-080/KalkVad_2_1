@@ -92,12 +92,17 @@
 
         <!--Верхний ряд кнопок  ПАМЯТЬ-->
 
+
+        <!--Верхний ряд кнопок  ПАМЯТЬ-->
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <Button
                 android:id="@+id/buSbrosMem"
+                android:layout_marginTop="3pt"
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
@@ -114,6 +119,7 @@
 
             <Button
                 android:id="@+id/buVivMem"
+                android:layout_marginTop="3pt"
                 android:layout_marginRight="2pt"
                 android:layout_marginBottom="4pt"
                 android:layout_weight="3"
@@ -131,6 +137,7 @@
 
             <Button
                 android:id="@+id/buMinusMem"
+                android:layout_marginTop="3pt"
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
@@ -147,6 +154,7 @@
 
             <Button
                 android:id="@+id/buPlusMem"
+                android:layout_marginTop="3pt"
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
@@ -163,6 +171,7 @@
 
             <Button
                 android:id="@+id/buZapMem"
+                android:layout_marginTop="3pt"
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
@@ -322,7 +331,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="18dp"
                 app:strokeColor="@color/CV31"
-                app:strokeWidth="10dp" />
+                app:strokeWidth="3dp" />
 
         </TableRow>
 
@@ -349,8 +358,9 @@
                 android:textColor="@color/CV3"
                 android:textSize="20pt"
                 android:textStyle="bold"
-                android:translationZ="40dp"
+
                 app:cornerRadius="100dp"
+                app:rippleColor="@color/CV20"
                 app:strokeColor="@color/CV14"
                 app:strokeWidth="4dp" />
 
@@ -404,7 +414,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="18dp"
                 app:strokeColor="@color/CV31"
-                app:strokeWidth="10dp" />
+                app:strokeWidth="4dp" />
         </TableRow>
 
         <!--Третий ряд кнопок-->
@@ -480,7 +490,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="18dp"
                 app:strokeColor="@color/CV31"
-                app:strokeWidth="10dp" />
+                app:strokeWidth="5dp" />
 
         </TableRow>
 
@@ -557,7 +567,7 @@
                 android:textStyle="bold"
                 app:cornerRadius="18dp"
                 app:strokeColor="@color/CV31"
-                app:strokeWidth="10dp" />
+                app:strokeWidth="6dp" />
 
         </TableRow>
 
@@ -641,7 +651,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2pt"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5pt"
         android:layout_marginRight="2pt"
         android:layout_marginBottom="2pt"
         android:background="@drawable/rounded_zvuk"
