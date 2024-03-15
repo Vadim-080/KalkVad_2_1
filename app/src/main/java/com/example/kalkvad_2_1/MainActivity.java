@@ -8,16 +8,28 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -26,11 +38,21 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.my.target.ads.MyTargetView;
+import com.my.target.common.models.IAdLoadingError;
+
 public class MainActivity extends AppCompatActivity {
 
     /*Задаём переменные*/
     TextView tv1, tv2, tv3, tv4; // плавное появление экрана
-    int koifPrivet;
+    /* int koifPrivet;*/
     Animation anim;
     String operator = "";
     public static byte viborPoliaDlyaZadaniaRazmera;
@@ -54,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
     public static TextView vichislen; // поле для вывода процесса набора
     Boolean zapretVtoroiTochki = false;
     double obrabativDlyaRezChislo;
-    String scobci;
+    String scobci = String.valueOf(0);
+    ;
     public static int cvet;  // цвет вывода слов
     public static Boolean aktivaciyaKnopok = true;
 
     // Переменные удаления пробелов
-    String udalProbVvod;
+    String udalProbVvod, udalProbScobci;
     String udalProbOldNamb;
     String udalProbNamber;
     String udalProbFormatOtveta;
@@ -74,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer4;
     MediaPlayer mediaPlayer5;
     MediaPlayer mediaPlayerAC;
+    LinearLayout LinearLayout;
+
+    /* private AdView adView;*/
+    private MyTargetView adView;
 
     /* Аннотация Java. Он сообщает компилятору, что следующий метод
     переопределяет метод своего суперкласса*/
@@ -81,6 +108,87 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*  LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);*/
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activityLayout);
+
+
+        // Создайте экземпляр моего целевого представления
+        adView = new MyTargetView(this);
+
+        // Set slot id
+        adView.setSlotId(1522084);
+
+      /*  // optional: if not set, banner will be adaptive
+        adView.setAdSize(MyTargetView.AdSize.ADSIZE_320x50);*/
+
+        // Установите параметры компоновки
+        RelativeLayout.LayoutParams adViewLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        adViewLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        adView.setLayoutParams(adViewLayoutParams);
+
+
+
+       /* adViewLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        adViewLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        adView.setLayoutParams(adViewLayoutParams);*/
+
+
+        // Устанавливаем слушатель событий
+        adView.setListener(new MyTargetView.MyTargetViewListener() {
+            @Override
+            public void onLoad(MyTargetView myTargetView) {
+                // Объявление успешно загружено. Начать показ объявления
+                layout.addView(adView);
+            }
+
+            /**
+             * @param iAdLoadingError
+             * @param myTargetView
+             */
+            public void onNoAd(@NonNull IAdLoadingError iAdLoadingError, @NonNull MyTargetView myTargetView) {
+
+            }
+
+
+            @Override
+            public void onShow(MyTargetView myTargetView) {
+            }
+
+            @Override
+            public void onClick(MyTargetView myTargetView) {
+            }
+        });
+
+        // Начать загрузку рекламы
+        adView.load();
+
+
+
+
+
+
+
+/*По умолчанию Панель действий размещается в верхней части активности,
+а сама разметка активности находится под панелью. Можно переопределить
+ это поведение, когда панель будет накладываться на разметку:*/
+      /*  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        setContentView(R.layout.activity_main);*/
+
+// СКРЫВАЕМ ВЕРХНЮЮ СТРОКУ НАВИГАЦИИ
+
+        LinearLayout = findViewById(R.id.linearLayout);
+
+        int currentVis = LinearLayout.getSystemUiVisibility();
+        int newVis;
+        if ((currentVis & View.SYSTEM_UI_FLAG_LOW_PROFILE) == View.SYSTEM_UI_FLAG_LOW_PROFILE) {
+            newVis = View.SYSTEM_UI_FLAG_VISIBLE;
+        } else {
+            newVis = View.SYSTEM_UI_FLAG_LOW_PROFILE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        }
+        LinearLayout.setSystemUiVisibility(newVis);
+
 
         vvodChisla = findViewById(R.id.editText);
         otvet = findViewById(R.id.otvet);
@@ -99,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer4 = MediaPlayer.create(this, R.raw.ravno2);
         mediaPlayer5 = MediaPlayer.create(this, R.raw.proc);
 
-/*Регулировка громкости*/
+        /*Регулировка громкости*/
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -157,19 +265,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (a == 0) {
             if (q >= 5 && q < 11) {
-                koifPrivet = 1;
+                /*   koifPrivet = 1;*/
                 otvet.setText("ДОБРОЕ УТРО");
             }
             if (q >= 11 && q < 18) {
-                koifPrivet = 2;
+                /*  koifPrivet = 2;*/
                 otvet.setText("ДОБРЫЙ ДЕНЬ");
             }
             if (q >= 18 && q < 23) {
-                koifPrivet = 4;
+                /*   koifPrivet = 4;*/
                 otvet.setText("ДОБРЫЙ ВЕЧЕР");
             }
             if (q >= 23 || q < 5) {
-                koifPrivet = 2;
+                /*    koifPrivet = 2;*/
                 otvet.setText("ДОБРОЙ НОЧИ");
             }
             viborShriftaPrivet();
@@ -180,19 +288,19 @@ public class MainActivity extends AppCompatActivity {
 
             if (q >= 5 && q < 11) {
                 otvet.setText("УТРЕННИЙ ПРИВЕТ");
-                koifPrivet = 12;
+                /*  koifPrivet = 12;*/
             }
             if (q >= 11 && q < 18) {
                 otvet.setText("ДНЕВНОЙ ПРИВЕТ");
-                koifPrivet = 11;
+                /*  koifPrivet = 11;*/
             }
             if (q >= 18 && q < 23) {
                 otvet.setText("ВЕЧЕРНИЙ ПРИВЕТ");
-                koifPrivet = 10;
+                /*  koifPrivet = 10;*/
             }
             if (q >= 23 || q < 5) {
                 otvet.setText("НОЧНОЙ ПРИВЕТ");
-                koifPrivet = 6;
+                /*    koifPrivet = 6;*/
             }
             viborShriftaPrivet();
             return;
@@ -201,28 +309,36 @@ public class MainActivity extends AppCompatActivity {
         if (a == 2) {
 
             if (q >= 5 & q < 11) {
-                koifPrivet = 5;
-                otvet.setText("бодрого утра");
-                koifPrivet = 8;
+                /*   koifPrivet = 5;*/
+                otvet.setText("БОДРОГО УТРА");
+                /* koifPrivet = 8;*/
             }
             if (q >= 11 & q < 18) {
-                koifPrivet = 3;
-                otvet.setText("хорошего дня");
-                koifPrivet = 5;
+                /* koifPrivet = 3;*/
+                otvet.setText("ПРЕКРАСНОГО ДНЯ");
+                /*   koifPrivet = 5;*/
             }
             if (q >= 18 & q < 23) {
-                koifPrivet = 6;
-                otvet.setText("приятного вечера");
-                koifPrivet = 13;
+                /* koifPrivet = 6;*/
+                otvet.setText("ПРИЯТНОГО ВЕЧЕРА");
+                /*  koifPrivet = 13;*/
             }
             if (q >= 23 || q < 4) {
-                koifPrivet = 4;
-                otvet.setText("спокойной ночи");
-                koifPrivet = 2;
+                /*   koifPrivet = 4;*/
+                otvet.setText("СПОКОЙНОЙ НОЧИ");
+                /*  koifPrivet = 2;*/
             }
             viborShriftaPrivet();
         }
+
     }
+
+    @Override
+    protected void onDestroy() {
+        if (adView != null) adView.destroy();
+        super.onDestroy();
+    }
+
 
     public void sbrosPrivet() {
         String s10 = otvet.getText().toString();
@@ -246,6 +362,8 @@ public class MainActivity extends AppCompatActivity {
         udalProbOtvet = otvet.getText().toString();
         udalProbOtvet = udalProbOtvet.replaceAll("\\s+", "");
         udalProbFormatOtveta = formatOtveta.replaceAll("\\s+", "");
+
+        udalProbScobci = scobci.replaceAll("\\s+", "");
     }
 
     /* Метод ввода цифр */
@@ -568,6 +686,21 @@ public class MainActivity extends AppCompatActivity {
         if (a1 == 0) {
             oldNumber = udalProbOtvet;
         }
+
+      /*  double a2 = Double.parseDouble(udalProbOtvet);
+        if (a1 == 0 & a2 == 0 ) {}*/
+
+
+        /*   newNumber= String.valueOf(0);*/
+
+
+        /* scobci = newNumberSProb;*/
+        scobci = newNumberSProb;
+        scobci();
+        udalProbelov();
+        newNumber = udalProbScobci;
+
+
         switch (operator) {
 
             case "-":
@@ -613,8 +746,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if (result > 9e300 || result < -9e300) {
             bolchChisloVOtvet();
-            scobci = newNumberSProb;
-            scobci();
+           /* scobci = newNumberSProb;
+            scobci();*/
             vichislen.setText(oldNumber + " " + operator + " " + scobci);
             return;
         } else {

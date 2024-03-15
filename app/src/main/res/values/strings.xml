@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">  <font fgcolor='#95F856' size="22">  <!--Цвет и размер текста заголовка-->
-        КАЛЬКУЛЯТОР  ОТ  ВАДИМА</font>
+    <string name="app_name">  <font fgcolor='#95F856' size="20">  <!--Цвет и размер текста заголовка-->
+        КАЛЬКУЛЯТОР С АНИМАЦИЕЙ</font>
 
     </string>
+
+    <string name="admob_app_id">
+ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_id">
+ca-app-pub-3940256099942544/6300978111</string>
 
 </resources>
