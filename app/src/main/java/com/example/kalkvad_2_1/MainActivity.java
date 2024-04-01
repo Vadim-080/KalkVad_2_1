@@ -7,8 +7,11 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -45,8 +48,19 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.my.target.ads.InterstitialAd;
 import com.my.target.ads.MyTargetView;
+import com.my.target.common.MyTargetConfig;
+import com.my.target.common.MyTargetManager;
 import com.my.target.common.models.IAdLoadingError;
+import com.my.tracker.MyTracker;
+import com.my.tracker.MyTrackerConfig;
+import com.my.tracker.MyTrackerParams;
+import com.yandex.mobile.ads.banner.BannerAdSize;
+import com.yandex.mobile.ads.banner.BannerAdView;
+import com.yandex.mobile.ads.common.InitializationListener;
+
+import org.jetbrains.annotations.Nullable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,9 +91,11 @@ public class MainActivity extends AppCompatActivity {
     Boolean zapretVtoroiTochki = false;
     double obrabativDlyaRezChislo;
     String scobci = String.valueOf(0);
-    ;
+
     public static int cvet;  // цвет вывода слов
     public static Boolean aktivaciyaKnopok = true;
+
+    LinearLayout LinearLayout;
 
     // Переменные удаления пробелов
     String udalProbVvod, udalProbScobci;
@@ -97,10 +113,14 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer4;
     MediaPlayer mediaPlayer5;
     MediaPlayer mediaPlayerAC;
-    LinearLayout LinearLayout;
 
-    /* private AdView adView;*/
-    private MyTargetView adView;
+// Перемен рекламмы VK
+    private MyTargetView adView, adView1; // Рекламный  экземпляр класса
+    RelativeLayout layout, layout1;
+    RelativeLayout.LayoutParams adViewLayoutParams, adViewLayoutParams1;
+
+    /*  private InterstitialAd ad;*/
+    /*  private InterstitialAd interstitialAd;*/
 
     /* Аннотация Java. Он сообщает компилятору, что следующий метод
     переопределяет метод своего суперкласса*/
@@ -109,48 +129,83 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*  LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);*/
 
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activityLayout);
+// РЕКЛАМА ЯНДЕКС
 
 
-        // Создайте экземпляр моего целевого представления
+        /*mBinding = ActivityInlineBannerAdBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());*/
+
+       /* @NonNull
+        private BannerAdSize getAdSize() {
+            final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            // Calculate the width of the ad, taking into account the padding in the ad container.
+            int adWidthPixels = mBinding.adContainerView.getWidth();
+            if (adWidthPixels == 0) {
+                // If the ad hasn't been laid out, default to the full screen width
+                adWidthPixels = displayMetrics.widthPixels;
+            }
+            final int adWidth = Math.round(adWidthPixels / displayMetrics.density);
+
+            return BannerAdSize.stickySize(this, adWidth);
+        }*/
+
+
+
+        /*MyTargetConfig myTargetConfig = new MyTargetConfig.Builder()
+                .withTestDevices("f3685ccd-7784-4455-b57e-547729f06365")
+                .build();
+        MyTargetManager.setSdkConfig(myTargetConfig);*/
+
+// РЕКЛАМА  VK
+
+        layout1 = findViewById(R.id.RelativeLayout1);
+
+        layout = findViewById(R.id.RelativeLayout);
+
+        // Включение режима отладки
+        /*MyTargetManager.setDebugMode(true);*/
+
+        //  Создаем экземпляр MyTargetView
+
+        adView1 = new MyTargetView(this);
+
         adView = new MyTargetView(this);
 
-        // Set slot id
-        adView.setSlotId(1522084);
+        // Устанавливаем id слота
+        adView.setSlotId(1535533);
 
-      /*  // optional: if not set, banner will be adaptive
-        adView.setAdSize(MyTargetView.AdSize.ADSIZE_320x50);*/
+        adView.setAdSize(MyTargetView.AdSize.ADSIZE_320x50);
 
-        // Установите параметры компоновки
-        RelativeLayout.LayoutParams adViewLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        adView1.setSlotId(1535536);
+
+        adView1.setAdSize(MyTargetView.AdSize.ADSIZE_300x250);
+
+        // Устанавливаем LayoutParams
+        adViewLayoutParams1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        adViewLayoutParams1.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        adView1.setLayoutParams(adViewLayoutParams1);
+
+        adViewLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         adViewLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         adView.setLayoutParams(adViewLayoutParams);
-
-
-
-       /* adViewLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        adViewLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        adView.setLayoutParams(adViewLayoutParams);*/
-
 
         // Устанавливаем слушатель событий
         adView.setListener(new MyTargetView.MyTargetViewListener() {
             @Override
             public void onLoad(MyTargetView myTargetView) {
-                // Объявление успешно загружено. Начать показ объявления
+                // Данные успешно загружены, запускаем показ объявлений
                 layout.addView(adView);
+                /*  layout.addView(adView, adViewLayoutParams );*/
             }
 
             /**
              * @param iAdLoadingError
              * @param myTargetView
              */
+            @Override
             public void onNoAd(@NonNull IAdLoadingError iAdLoadingError, @NonNull MyTargetView myTargetView) {
-
             }
-
 
             @Override
             public void onShow(MyTargetView myTargetView) {
@@ -160,15 +215,39 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(MyTargetView myTargetView) {
             }
         });
-
-        // Начать загрузку рекламы
+        // Запускаем загрузку данных
         adView.load();
 
 
+        // Устанавливаем слушатель событий
+        adView1.setListener(new MyTargetView.MyTargetViewListener() {
+            @Override
+            public void onLoad(MyTargetView myTargetView1) {
+                // Данные успешно загружены, запускаем показ объявлений
+                layout1.addView(adView1);
+            }
 
+            /**
+             * @param iAdLoadingError
+             * @param myTargetView1
+             */
 
+            @Override
 
+            public void onNoAd(@NonNull IAdLoadingError iAdLoadingError, @NonNull MyTargetView myTargetView1) {
+            }
 
+            @Override
+            public void onShow(MyTargetView myTargetView1) {
+            }
+
+            @Override
+            public void onClick(MyTargetView myTargetView1) {
+            }
+        });
+
+        // Начать загрузку рекламы
+        adView1.load();
 
 /*По умолчанию Панель действий размещается в верхней части активности,
 а сама разметка активности находится под панелью. Можно переопределить
@@ -176,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
       /*  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         setContentView(R.layout.activity_main);*/
 
-// СКРЫВАЕМ ВЕРХНЮЮ СТРОКУ НАВИГАЦИИ
+// СКРЫВАЕМ ВЕРХНЮЮ И НИЖНЮЮ СТРОКИ НАВИГАЦИИ
 
         LinearLayout = findViewById(R.id.linearLayout);
 
@@ -331,14 +410,72 @@ public class MainActivity extends AppCompatActivity {
             viborShriftaPrivet();
         }
 
+
     }
 
     @Override
     protected void onDestroy() {
+
+        if (adView1 != null) adView1.destroy();
+        super.onDestroy();
+
         if (adView != null) adView.destroy();
         super.onDestroy();
+
+
     }
 
+    // ВИДЕО РЕКЛАМА
+ /*   private void initAd() {
+        // Включение режима отладки
+        // MyTargetManager.setDebugMode(true);
+
+        // Создаем экземпляр InterstitialAd
+        ad = new InterstitialAd(1530089, this);
+
+        // Устанавливаем слушатель событий
+        interstitialAd.setListener(new InterstitialAd.InterstitialAdListener() {
+           *//* @Override
+            public void onLoad(InterstitialAd ad)
+            {
+            }*//*
+
+            @Override
+            public void onLoad(InterstitialAd ad) {
+                // Запускаем показ
+                // в отдельном Activity
+                ad.show();
+            }
+
+            @Override
+            public void onNoAd(@NonNull IAdLoadingError iAdLoadingError, @NonNull InterstitialAd interstitialAd) {
+
+            }
+
+
+            @Override
+            public void onClick(InterstitialAd ad) {
+            }
+
+            @Override
+            public void onDisplay(InterstitialAd ad) {
+            }
+
+            @Override
+            public void onDismiss(InterstitialAd ad) {
+            }
+
+            @Override
+            public void onVideoCompleted(InterstitialAd ad) {
+            }
+
+
+        });
+
+        // Запускаем загрузку данных
+        ad.load();
+    }
+*/
 
     public void sbrosPrivet() {
         String s10 = otvet.getText().toString();
@@ -1421,6 +1558,8 @@ public class MainActivity extends AppCompatActivity {
     public void acClick(View view) throws InterruptedException {
         udalProbelov();
 
+        /*    initAd();*/
+
         buAC.setEnabled(false);
         buAC.setAlpha(1f);  // ПРОЗРАЧНОСТЬ КНОПКИ
         buAC.animate().alpha(0.6f).setDuration(2000);
@@ -1958,6 +2097,9 @@ public class MainActivity extends AppCompatActivity {
             a27.setAlpha(0.2f);
             a27.animate().alpha(1f).setDuration(2000);
         }
+    }
+
+    private class ActivityInlineBannerAdBinding {
     }
 }
 

@@ -15,67 +15,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/activityLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.my.target.ads.MyTargetView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/view_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:myTarget_adSize="banner_320x50"
-            app:myTarget_isRefreshAd="false"
-            app:myTarget_slotId="1522084">
-
-        </com.my.target.ads.MyTargetView>
-    </RelativeLayout>
-
-
-    <com.my.target.ads.MyTargetView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/view_ad1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:myTarget_adSize="banner_320x50"
-        app:myTarget_isRefreshAd="false"
-        app:myTarget_slotId="1522084">
-
-    </com.my.target.ads.MyTargetView>
-
-
-    <!-- <com.google.android.gms.ads.AdView
-         xmlns:ads="http://schemas.android.com/apk/res-auto"
-         android:id="@+id/adView"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:layout_alignParentBottom="true"
-         ads:adSize="BANNER"
-
-
-         android:visibility= "gone"
-
-         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-
-         />-->
-
-    <!--  app:myTarget_adSize="banner_320x50"
-      app:myTarget_slotId="1522084"-->
-
-
-    <!-- set Banner ad position in UI layout design
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_banner_id">
-    </com.google.android.gms.ads.AdView> -->
-
-
     <!-- поле ячейки памяти -->
 
     <!-- поле хода вычисления-->
@@ -115,10 +54,11 @@
 
     <!--Контейнер структурирует элементы управления в виде таблицы по столбцам и строкам-->
 
+
     <TextView
         android:id="@+id/otvet"
         android:layout_width="match_parent"
-        android:layout_height="38pt"
+        android:layout_height="35pt"
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
@@ -131,11 +71,10 @@
         android:text="0"
         android:textColor="@color/CV20" />
 
-
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="37pt"
+        android:layout_height="34pt"
         android:layout_marginLeft="1pt"
         android:layout_marginTop="0.2pt"
         android:layout_marginRight="2pt"
@@ -170,7 +109,7 @@
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
-                android:height="30pt"
+                android:height="28pt"
                 android:backgroundTint="@color/CV24"
                 android:onClick="memori"
                 android:rotation="-5"
@@ -188,7 +127,7 @@
                 android:layout_marginBottom="4pt"
                 android:layout_weight="3"
                 android:width="30pt"
-                android:height="30pt"
+                android:height="28pt"
                 android:backgroundTint="@color/CV24"
                 android:onClick="memori"
                 android:rotation="-5"
@@ -205,7 +144,7 @@
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
-                android:height="30pt"
+                android:height="28pt"
                 android:backgroundTint="@color/CV24"
                 android:onClick="memori"
                 android:rotation="-5"
@@ -222,7 +161,7 @@
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
-                android:height="30pt"
+                android:height="28pt"
                 android:backgroundTint="@color/CV24"
                 android:onClick="memori"
                 android:rotation="-5"
@@ -239,7 +178,7 @@
                 android:layout_marginRight="2pt"
                 android:layout_weight="3"
                 android:width="30pt"
-                android:height="30pt"
+                android:height="28pt"
                 android:backgroundTint="@color/CV24"
                 android:onClick="memori"
                 android:rotation="-5"
@@ -726,6 +665,39 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playButton" />
 
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.my.target.ads.MyTargetView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:myTarget_adSize="banner_320x50"
+            app:myTarget_isRefreshAd="true"
+            app:myTarget_slotId="1535533">
+        </com.my.target.ads.MyTargetView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.my.target.ads.MyTargetView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_View1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:myTarget_adSize="banner_320x50"
+            app:myTarget_isRefreshAd="true"
+            app:myTarget_slotId="1535536">
+        </com.my.target.ads.MyTargetView>
+    </RelativeLayout>
 
 </LinearLayout>
+
+
 
